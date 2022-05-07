@@ -1,4 +1,4 @@
-package Topic_01_Test2;
+package Code_structure;
  
 import java.util.concurrent.TimeUnit;
  
@@ -10,16 +10,27 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
  
-public class Test2 {
+public class Structure {
+	//Khai báo biến driver đại diện cho Selenium Driver
 WebDriver driver;
 String projectPath = System.getProperty("user.dir");
 
 @BeforeClass
 public void beforeClass() {
-	System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+	
+//Set up môi trường cho geckodriver để giao tiếp giữa browser và code
+System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+
+//Bật trình duyệt Firefox
 driver = new FirefoxDriver();
+
+//Đặt thời gian để tìm element
 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+//Mở cửa sổ browser tối đa (to nhất)
 driver.manage().window().maximize();
+
+//Truy cập trang web cần test
 driver.get("https://demo.guru99.com/v4/");
 }
  
@@ -28,6 +39,7 @@ public void TC_01_ValidateCurrentUrl() {
 // Login Page Url matching
 String loginPageUrl = driver.getCurrentUrl();
 Assert.assertEquals(loginPageUrl, "https://demo.guru99.com/v4/");
+
 }
  
 @Test
@@ -45,14 +57,10 @@ Assert.assertTrue(driver.findElement(By.xpath("//form[@name='frmLogin']")).isDis
 
 @Test
 public void TC_04_DescriptionDisplayed() {
-	Assert.assertTrue(driver.findElement(By.xpath("//h4//span[(text()='Steps To Generate Access'))]")).isDisplayed());
-
+	driver.findElement(By.xpath("//h4[@class='barone']/span[text()='Steps To Generate Access']"));
+	driver.findElement(By.name("uid")).sendKeys("duy@g.com");
 		
 }
 
-@AfterClass
-public void afterClass() {
-	driver.quit();
 }
 
-}
