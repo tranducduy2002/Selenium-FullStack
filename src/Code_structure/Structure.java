@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
  
@@ -33,7 +32,13 @@ driver.manage().window().maximize();
 //Truy cập trang web cần test
 driver.get("https://demo.guru99.com/v4/");
 }
- 
+
+@Test
+public void Structures() {
+	//Css
+	//Xpath (learn)
+}
+
 @Test
 public void TC_01_ValidateCurrentUrl() {
 // Login Page Url matching
