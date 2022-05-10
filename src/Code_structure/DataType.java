@@ -3,7 +3,7 @@ package Code_structure;
 public class DataType {
 
 	public void main(String[] args) {
-		// Khai báo biến: Kiểu dữ liệu + Tên biến
+		// Khai báo biến: Kiểu dữ liệu + Tên biến: viết thường từ đầu tiên, từ tiếp theo sẽ viết hoa chữ đầu tiên
 		int studentNumber;
 		
 		// Khởi tạo dữ liệu
