@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -68,7 +69,14 @@ public class Xpath_project {
 
 	@Test
 	public void TC_02_ValidatePageTitle() {
-		
+		driver.get("http://live.techpanda.org/index.php/customer/account/login/");
+
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='footer']")).getText(),"My Account");
+		//div[starts-with(@class,'page-title')]	
+		// //span[text()='Hello "John", What's happened?'] => sai
+		// //span[text()="Hello "John", What's happened?"] => sai
+		// concat nối 2 chuỗi với nhau
+		// //span[text()=concat('Hello "John", What',""'s happened?"] nháy đơn thay bằng nháy đôi và nháy đôi thay bằng nhấy đơn
 	}
 
 	@Test
