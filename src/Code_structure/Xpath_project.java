@@ -61,7 +61,9 @@ public class Xpath_project {
 		
 		
 		// Thao tác login
-		
+		driver.findElement(By.xpath("//input[@id='newsletter]"));
+		driver.findElement(By.xpath("//input[@id=\"newsletter"));
+		// JAVA: "" đại diện cho 1 chuỗi (String)
 	}
 
 	@Test
