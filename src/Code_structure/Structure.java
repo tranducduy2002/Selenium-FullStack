@@ -67,5 +67,17 @@ public void TC_04_DescriptionDisplayed() {
 		
 }
 
+@Test
+public void AutoPractsite() {
+	driver.get("http://automationpractice.com/index.php");
+	driver.findElement(By.xpath("//span[text()='Total']/preceding-sibling::span")).getText();
+}
+
+@Test
+public void PacktPub() {
+	driver.findElement(By.xpath("//div[@class='product-title mb-3']/ancestor::*[contain(@class,'body')]/child::*/following-sibling::*"));
+
+}
+
 }
 

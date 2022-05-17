@@ -79,6 +79,8 @@ public class Xpath_project {
 		// //span[text()=concat('Hello "John", What',""'s happened?"] nháy đơn thay bằng nháy đôi và nháy đôi thay bằng nhấy đơn
 	}
 
+	//img[substring(@src, string-length(@src) - string-length('.jpg')+1 ) '.jpg' ] selects all images display a .jpg image. 
+	
 	@Test
 	public void TC_03_LoginFormDisplayed() {
 		
