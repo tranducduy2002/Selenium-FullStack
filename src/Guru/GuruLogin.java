@@ -28,7 +28,7 @@ public class GuruLogin {
 	public void Getaccount() {
 		driver.get("https://demo.guru99.com/v4/");
 		driver.findElement(By.xpath("//a[@href='http://demo.guru99.com/']")).click();
-		driver.findElement(By.xpath("//input[@name='emailid']")).sendKeys("duy.tran@getz.co");
+		driver.findElement(By.xpath("//input[@name='emailid']")).sendKeys("duy.tran@gmail.co");
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
 		String userID = driver.findElement(By.xpath("//td[text()='User ID :']/following-sibling::td")).getText();
 		String loginPasswords = driver.findElement(By.xpath("//td[text()='Password :']/following-sibling::td")).getText();
