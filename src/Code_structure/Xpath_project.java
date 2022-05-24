@@ -25,7 +25,7 @@ public class Xpath_project {
 		driver.manage().window().maximize();
 
 	}
-	
+	// Case phức tạp Xpath mới hỗ trợ được
 	@Test
 	public void TC_01() {
 		// TÌm (Find) - số ít - trả về 1 cái
