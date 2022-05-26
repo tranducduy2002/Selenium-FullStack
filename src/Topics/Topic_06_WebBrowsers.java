@@ -1,4 +1,4 @@
-package ExerciseXpath;
+package Topics;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class Topic_05_Multiple_Browsers {
+public class Topic_06_WebBrowsers {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
@@ -22,30 +22,33 @@ public class Topic_05_Multiple_Browsers {
 		driver.get("https://facebook.com");
 		
 		driver.quit();
+		
 	}
-
-	@Test
-	public void TC_02_FireFox() {
-		// Setting OS hiểu được geckodriver => Giao tiếp với Browser
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+	
+	// Hàm không có tham số
+	public void clickToElement() {
 		
-		driver.get("https://facebook.com");
-		
-		driver.quit();
 	}
-
-	@Test
-	public void TC_03_Edge_Chromnium() {
-		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
-		driver = new EdgeDriver();
+	
+	
+	// Hàm này có 1 tham số
+	// Tham số này có kiểu dữ liệu là String
+	public void clickToElement(String elementName) {
 		
-		driver.get("https://facebook.com");
 		
-		driver.quit();
+	}
+	
+	// Hàm này có 2 tham số (số lượng)
+	public void clickToElement(String elementName, String locatorName) {
 		
 	}
 
+@Test // Test method
+public void TC_01_Login() {
+	
+	
+	
+}
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
