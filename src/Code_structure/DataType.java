@@ -90,5 +90,22 @@ public class DataType {
 				
 		// 
 	}
+
+	// Hàm không có tham số
+	public void clickToElement() {
+		
+	}
 	
+	
+	// Hàm này có 1 tham số
+	// Tham số này có kiểu dữ liệu là String
+	public void clickToElement(String elementName) {
+		
+		
+	}
+	
+	// Hàm này có 2 tham số (số lượng)
+	public void clickToElement(String elementName, String locatorName) {
+		
+	}
 }

@@ -1,10 +1,14 @@
 package Topics;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Topic_06_WebBrowsers {
@@ -14,37 +18,61 @@ public class Topic_06_WebBrowsers {
 
 	
 
-	@Test
-	public void TC_01_Chrome() {
+	@BeforeTest
+	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
-		
-		driver.get("https://facebook.com");
-		
-		driver.quit();
+			
 		
 	}
 	
-	// Hàm không có tham số
-	public void clickToElement() {
-		
-	}
-	
-	
-	// Hàm này có 1 tham số
-	// Tham số này có kiểu dữ liệu là String
-	public void clickToElement(String elementName) {
-		
-		
-	}
-	
-	// Hàm này có 2 tham số (số lượng)
-	public void clickToElement(String elementName, String locatorName) {
-		
-	}
 
 @Test // Test method
-public void TC_01_Login() {
+public void TC_01_Method() {
+	driver.close(); //dùng để close browser/ tab, nếu như chỉ có 1 tabL close browser, nếu như nhiều hơn 1 tab: close tab đang active
+	
+	driver.quit(); // dùng để close browser không quan tâm số lượng tab
+	
+	driver.get("url"); // dùng để mở url
+	
+	// ******************* Wait **************************
+	driver.findElement(By.xpath("")); // để tìm 1 element
+	driver.findElements(By.xpath("")); // để tìm nhiều elements
+	
+	driver.getCurrentUrl(); // để get url hiện tại
+	
+	driver.getPageSource(); // get ra source code HTML/ JS/ CSS của page hiện tại
+	
+	driver.getTitle(); // lấy ra title của page hiện tại
+	
+	//===================  Windows/ Tabs =============================
+	driver.getWindowHandle(); // dùng để xử lý window/ tab: lấy ra ID của window/ tab đang active
+	
+	driver.getWindowHandles(); // lấy ra id của tất cả các tab mà window đang mở
+	
+	// ********************** Framework *********************
+	driver.manage().deleteAllCookies();    // Cookie: lưu lại phiên đăng nhập/ session/ dữ liệu duyệt web / ...... (Framework có 1 bài học về save dữ liệu)
+	
+	// ********************* Framework - Log *****************
+	driver.manage().logs().get("");
+	
+	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); // Chờ cho findElement/ findElements
+	
+	driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS); // chờ cho 1 page load thành công
+	
+	driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS); // chờ cho 1 đoạn code JavaScript được thực thi thành công: asynchronous script bất đồng bộ, synchronous đồng bộ
+	
+	driver.manage().window().fullscreen(); // full hết toàn màn hình
+	driver.manage().window().maximize(); // mở rộng hết cửa sổ
+	
+	// Set vị trí của browser so với độ phân giải màn hình 
+	driver.manage().window().setPosition(new Point(100, 250)); // 
+	driver.manage().window().getPosition();
+	
+	// Mở browser với kích thước là bao nhiêu => Test responsive 
+	driver.manage().window().setSize(new Dimension(1920, 1080));
+	driver.manage().window().getSize();
+	
 	
 	
 	
