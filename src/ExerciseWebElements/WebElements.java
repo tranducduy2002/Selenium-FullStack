@@ -1,4 +1,4 @@
-package Code_structure;
+package ExerciseWebElements;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class BasicTemplate {
+public class WebElements {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
@@ -21,20 +21,24 @@ public class BasicTemplate {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-
+		driver.get("https://www.facebook.com/");
 	}
 
 	@Test
 	public void TC_01_ValidateCurrentUrl() {
-		driver.get("http://live.techpanda.org/");
 		
-		driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
-		
-		String titleCreateAccount = driver.findElement(By.cssSelector("div.page-title h1")).getText();
-		System.out.println(titleCreateAccount);
 	}
 
-	
+	@Test
+	public void TC_02_ValidatePageTitle() {
+		
+	}
+
+	@Test
+	public void TC_03_LoginFormDisplayed() {
+		
+	}
+
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
