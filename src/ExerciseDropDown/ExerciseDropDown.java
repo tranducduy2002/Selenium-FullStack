@@ -67,8 +67,8 @@ public class ExerciseDropDown {
 		
 		select = new Select(driver.findElement(By.name("DateOfBirthYear")));
 		List<WebElement> thirdCount = select.getOptions();
-		int optioncount = thirdCount.size();
-		System.out.println(optioncount);
+		int optionYear = thirdCount.size();
+		System.out.println(optionYear);
 		select.selectByVisibleText(year);
 				
 		driver.findElement(By.name("Email")).sendKeys(emailAddress);
