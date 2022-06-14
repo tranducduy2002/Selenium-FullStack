@@ -45,7 +45,7 @@ public class ExerciseDropDown {
 	}
 
 	@Test
-	public void TC_04() {
+	public void TC_04 () {
 		driver.get("https://demo.nopcommerce.com");
 		driver.findElement(By.className("ico-register")).click();
 		
@@ -95,16 +95,33 @@ public class ExerciseDropDown {
 		
 		select = new Select(driver.findElement(By.name("DateOfBirthYear")));
 		Assert.assertEquals(select.getFirstSelectedOption().getText(), year);
-		
-		
-		
 	
 	}
 
+	@Test
+	public void TC_05 () {
+		driver.get("https://applitools.com/automating-tests-chrome-devtools-recorder-webinar");
+		select = new Select(driver.findElement(By.id("Person_Role__c")));
+		select.selectByVisibleText("Software Developer");
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "Software Developer"); 
+		
+		select = new Select(driver.findElement(By.name("Test_Framework__c")));
+		select.selectByVisibleText("*Existing Test Framework");
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "*Existing Test Framework"); 
+		
+		select = new Select(driver.findElement(By.name("Self_Report_Country__c")));
+		select.selectByVisibleText("United Kingdom");
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "United Kingdom"); 
+		
+		
+
+		
+		
+	}
 	
 	@AfterClass
 	public void afterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 	
 }
