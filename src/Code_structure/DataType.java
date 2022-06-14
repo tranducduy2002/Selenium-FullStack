@@ -1,7 +1,14 @@
 package Code_structure;
 
-public class DataType {
+import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class DataType {
+	WebDriver driver;
+	
 	public static void main(String[] args) {
 		// Khai báo biến: Kiểu dữ liệu + Tên biến: viết thường từ đầu tiên, từ tiếp theo sẽ viết hoa chữ đầu tiên
 		//int studentNumber;
@@ -84,6 +91,12 @@ public class DataType {
 		System.out.println(a);
 		System.out.println(b);
 	
+		By emailTexBoxBy = By.cssSelector("");
+		
+		WebElement emailTextBox = driver.findElement(By.cssSelector(""));
+		
+		List<WebElement> checkboxes = driver.findElements(By.cssSelector(""));
+		
 		
 		//String studentName = "B";
 		//String companyName = "Cong Ty TNHH 1 thanh vien @ Copyright 2022";
