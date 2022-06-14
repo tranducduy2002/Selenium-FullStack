@@ -1,9 +1,12 @@
 package ExerciseDropDown;
 
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -11,62 +14,69 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Exercise_Dropdown_01 {
-	WebDriver driver;
-	Select select;
-	String projectPath = System.getProperty("user.dir");
-	String firstName, lastName, day, month, year, emailAddress, companyName, passwords;
+public class ExerciseDropDown {
 
+	WebDriver driver;
+	String projectPath = System.getProperty("user.dir");
+	Select select;
+	String firstName, lastName, emailAddress, companyName, passwords;
+	String day, month, year;
+	
+	public int generateRandomNumber() {
+		Random rand = new Random();
+		return rand.nextInt(9999);
+	}
+	
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 		driver = new EdgeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
-		firstName = "Lucas";
-		lastName = "Murer";
-		day = "20";
-		month = "April";
-		year = "1986";
-		emailAddress = "kusio1236@gmail.com";
-		companyName = "Google"; 
+		firstName = "Kusio";
+		lastName = "Hituro";
+		emailAddress = "kusio" + generateRandomNumber() + "@gmai.com";
+		companyName = "Google";
 		passwords = "12345678";
+		day = "1";
+		month = "May";
+		year = "1996";
 	}
 
 	@Test
-	public void TC_01_NopCommerce() {
-		driver.get("https://demo.nopcommerce.com/register");
+	public void TC_04() {
+		driver.get("https://demo.nopcommerce.com");
+		driver.findElement(By.className("ico-register")).click();
 		
-		driver.findElement(By.id("FirstName")).sendKeys(firstName);
-		driver.findElement(By.id("LastName")).sendKeys(lastName);
+		driver.findElement(By.id("gender-male")).click();
+		driver.findElement(By.name("FirstName")).sendKeys(firstName);
+		driver.findElement(By.name("LastName")).sendKeys(lastName);
 		
-		// Day
 		select = new Select(driver.findElement(By.name("DateOfBirthDay")));
+		List<WebElement> firstCount = select.getOptions();
+		int countDay = firstCount.size();
+		System.out.println(countDay);
 		select.selectByVisibleText(day);
 		
-		// Kiểm tra đã chọn được hay chưa
-		Assert.assertEquals(select.getFirstSelectedOption().getText(), day);
-		
-		// Kiểm tra 1 dropdown có phải là Multiple hay không
-		Assert.assertFalse(select.isMultiple());
-		
-		// Month
 		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+		List<WebElement> secondCount = select.getOptions();
+		int optionMonth = secondCount.size();
+		System.out.println(optionMonth);
 		select.selectByVisibleText(month);
-		Assert.assertEquals(select.getFirstSelectedOption().getText(), month);
-
 		
-		// Year
 		select = new Select(driver.findElement(By.name("DateOfBirthYear")));
+		List<WebElement> thirdCount = select.getOptions();
+		int optioncount = thirdCount.size();
+		System.out.println(optioncount);
 		select.selectByVisibleText(year);
-		Assert.assertEquals(select.getFirstSelectedOption().getText(), year);
-		
-		driver.findElement(By.id("Email")).sendKeys(emailAddress);
-		driver.findElement(By.id("Company")).sendKeys(companyName);
-		driver.findElement(By.id("Password")).sendKeys(passwords);
-		driver.findElement(By.id("ConfirmPassword")).sendKeys(passwords);
-		driver.findElement(By.id("register-button")).click();
+				
+		driver.findElement(By.name("Email")).sendKeys(emailAddress);
+		driver.findElement(By.name("Company")).sendKeys(companyName);
+		driver.findElement(By.name("Password")).sendKeys(passwords);
+		driver.findElement(By.name("ConfirmPassword")).sendKeys(passwords);
+			
+		driver.findElement(By.name("register-button")).click();
 		
 		Assert.assertEquals(driver.findElement(By.className("result")).getText(), "Your registration completed");
 		
@@ -88,11 +98,13 @@ public class Exercise_Dropdown_01 {
 		
 		
 		
+	
 	}
 
 	
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
+	
 }
