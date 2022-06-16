@@ -91,12 +91,7 @@ public class DataType {
 		System.out.println(a);
 		System.out.println(b);
 	
-		By emailTexBoxBy = By.cssSelector("");
-		
-		WebElement emailTextBox = driver.findElement(By.cssSelector(""));
-		
-		List<WebElement> checkboxes = driver.findElements(By.cssSelector(""));
-		
+	
 		
 		//String studentName = "B";
 		//String companyName = "Cong Ty TNHH 1 thanh vien @ Copyright 2022";
@@ -106,6 +101,12 @@ public class DataType {
 
 	// Hàm không có tham số
 	public void clickToElement() {
+	By emailTexBoxBy = By.cssSelector("");
+		
+		WebElement emailTextBox = driver.findElement(By.cssSelector(""));
+		
+		List<WebElement> checkboxes = driver.findElements(By.cssSelector(""));
+		
 		
 	}
 	

@@ -1,9 +1,11 @@
 package ExerciseDropDown;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class DropDown_Custom {
+public class DropDown_Custom_Function {
 
 	WebDriver driver;
 	WebDriverWait explicitWait;
@@ -38,17 +40,46 @@ public class DropDown_Custom {
 	public void TC_01() {
 		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
 		
-		driver.findElement(By.id("number-button")).click();
+		// * CHỌN ITEM 5 * /
+		selectItemInCustomDropdown("number-button", "ul#number-menu>li>div", "5");
 		
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.))
-		
+		// * CHỌN ITEM 10 */
+		selectItemInCustomDropdown("number-button", "ul#number-menu>li>div", "10");
 	
 	}
+	
+	public void selectItemInCustomDropdown (String parentLocator, String childLocator, String expectedTextItem) {
+		driver.findElement(By.id(parentLocator)).click();
+		sleepInSecond(1);
+		
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childLocator)));
+	
+		List<WebElement> allDropdownItems = driver.findElements(By.cssSelector(childLocator));
+		
+		for (WebElement item : allDropdownItems) {
+			String actualTextItem = item.getText();
+			
+			if (actualTextItem.equals(expectedTextItem)) {
+				item.click();
+				sleepInSecond(1);
 
+				break;
+			}
+			
+		}
+	}
+	
+	public void sleepInSecond(long timeInSecond) {
+		try {
+			Thread.sleep(timeInSecond * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
 	
 }
