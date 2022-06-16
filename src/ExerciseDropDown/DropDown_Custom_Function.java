@@ -25,48 +25,44 @@ public class DropDown_Custom_Function {
 		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 		driver = new EdgeDriver();
 		
-		// Luôn khởi tạo sau driver => vì cần giá trị drivẻ để khởi tạo explicitWait lên
-		// Wait cho các element theo điều kiện có sẵn: visible/ invisible/ presence/ clickable ....
-		explicitWait = new WebDriverWait(driver,15);
+		explicitWait = new WebDriverWait(driver,15); 
 		
-		// Wait cho việc tìm element: findelement/ findElements
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
-	
 	}
 
 	@Test
-	public void TC_01() {
-		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
-		
-		// * CHỌN ITEM 5 * /
-		selectItemInCustomDropdown("number-button", "ul#number-menu>li>div", "5");
-		
-		// * CHỌN ITEM 10 */
-		selectItemInCustomDropdown("number-button", "ul#number-menu>li>div", "10");
-	
+	public void TC_01_Jquery2() {
+		driver.get("https://www.honda.com.vn/o-to/du-toan-chi-phi");
+				
+		selectCustomDropdown("selectize-input", "div.dropdown-menu>a", "CIVIC E (Đen ánh/ Xám phong cách)");
+		sleepInSecond(1);
+
+		selectCustomDropdown("province", "select#province>option", "Đà Nẵng");
+		sleepInSecond(1);
+
+		selectCustomDropdown("registration_fee", "select#registration_fee>option", "Khu vực III");
+		sleepInSecond(1);
+
 	}
 	
-	public void selectItemInCustomDropdown (String parentLocator, String childLocator, String expectedTextItem) {
-		driver.findElement(By.id(parentLocator)).click();
-		sleepInSecond(1);
+	public void selectCustomDropdown(String firstMenu, String secondMenu, String option) {
+		driver.findElement(By.id(firstMenu)).click();
 		
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childLocator)));
-	
-		List<WebElement> allDropdownItems = driver.findElements(By.cssSelector(childLocator));
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(secondMenu)));
 		
-		for (WebElement item : allDropdownItems) {
-			String actualTextItem = item.getText();
-			
-			if (actualTextItem.equals(expectedTextItem)) {
+		List<WebElement> dropdownMenu = driver.findElements(By.cssSelector(secondMenu));
+		
+		for (WebElement item : dropdownMenu) {
+			String itemName = item.getText();
+			if (itemName.equals(option)) {
 				item.click();
 				sleepInSecond(1);
-
 				break;
-			}
-			
+				}
 		}
+				
 	}
 	
 	public void sleepInSecond(long timeInSecond) {
