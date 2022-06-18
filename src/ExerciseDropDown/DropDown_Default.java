@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ExerciseDropDown_Jquery2 {
+public class DropDown_Default {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
