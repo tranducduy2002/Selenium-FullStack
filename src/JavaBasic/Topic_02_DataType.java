@@ -1,5 +1,13 @@
 package JavaBasic;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 public class Topic_02_DataType {
 	// Global variable
 	static int  number;
@@ -12,20 +20,61 @@ public class Topic_02_DataType {
 	
 	long lNumber;
 	
-	float fNumber;
+	float fNumber = 15.98f;
 	
-	double dNumber;
+	double dNumber = 15.98d;
 	
 	char cCharacter;
 	
-	boolean trueorFalse;
+	boolean trueorFalse = false;
 	
-	public static void main(String[] args) {
-		// Local Variable
-		int studentNumber = 0;
+	
+	// Referrence Type: Tham chiếu
+	// String
+		String address = "Ha Noi";
+	
+	// Array
+		String[] studentAddress = {address, "Ha Noi", "Da Nang"};
+		Integer[] studentumber = {15, 20, 25};
 		
-		System.out.println(number);
+	// Class
+		Topic_02_DataType topic;
 		
-		System.out.println(studentNumber);
-	}
+	// Interface
+		WebDriver driver;
+		
+	// Object
+		Object aObject;
+		
+	// Collection
+	// List/ Set/ Queue/ Map
+		List<WebElement> homePageLinks = driver.findElements(By.tagName("a"));
+		
+		Set<String> allWindows = driver.getWindowHandles();
+		
+		List<String> productName = new ArrayList<String>();
+		
+		public void clickToElement() {
+			address.trim();
+			
+			studentAddress.clone();
+			
+			driver.getCurrentUrl();
+			
+			aObject.toString();
+			
+			homePageLinks.size();
+			
+			allWindows.clear();
+			
+			Topic_02_DataType topic = new Topic_02_DataType();
+			
+			topic.address = "Hue";
+			
+			
+		}
+		
+		
+		
+	
 }
