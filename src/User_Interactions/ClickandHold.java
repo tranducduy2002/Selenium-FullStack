@@ -22,15 +22,16 @@ public class ClickandHold {
 	Actions action;
 	JavascriptExecutor jsExecutor;
 	Alert alert;
-	@BeforeClass
-	public void beforeClass () {
-		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
-		driver = new EdgeDriver();
-		jsExecutor = (JavascriptExecutor) driver;
-		action = new Actions(driver);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
-	}
+	
+	  @BeforeClass public void beforeClass () {
+	  System.setProperty("webdriver.edge.driver", projectPath +
+	  "\\browserDrivers\\msedgedriver.exe"); driver = new EdgeDriver(); jsExecutor
+	  = (JavascriptExecutor) driver; action = new Actions(driver);
+	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+	  
+	  }
+	 
+	 
 	
 	@Test
 	public void TC_01_ClickandHold () {
