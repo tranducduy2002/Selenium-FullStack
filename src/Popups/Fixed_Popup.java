@@ -29,7 +29,7 @@ public class Fixed_Popup {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 	
-	@Test
+	//@Test
 	public void TC_01_FixedPopupInDOM() {
 		driver.get("https://ngoaingu24h.vn/");
 		
@@ -57,13 +57,62 @@ public class Fixed_Popup {
 
 	}
 	
-	@Test
+	//@Test
 	public void TC_02_FixedPopupInDOM() {
-		driver.get("https://ngoaingu24h.vn/");
-	
+		driver.get("https://kyna.vn");
+		
+		WebElement loginKyna = driver.findElement(By.cssSelector("div#k-popup-account-login"));
+		
+		Assert.assertFalse(loginKyna.isDisplayed());
+		
+		driver.findElement(By.xpath("//div[@class='mobile-button-wrap']/a[contains(text(),'Đăng nhập')]")).click();
+		sleepInSecond(3);
+		
+		Assert.assertTrue(loginKyna.isDisplayed());
+		
+		driver.findElement(By.cssSelector("input#user-login")).sendKeys("duy.tran1234@gmai.com");
+		driver.findElement(By.cssSelector("input#user-password")).sendKeys("12345678");
+		
+		driver.findElement(By.cssSelector("button#btn-submit-login")).click();
+		sleepInSecond(3);
+		
+		Assert.assertEquals(driver.findElement(By.cssSelector("div#password-form-login-message")).getText(), "Sai tên đăng nhập hoặc mật khẩu");
+		
+		driver.findElement(By.cssSelector("button.k-popup-account-close")).click();
+		sleepInSecond(3);
+
+		Assert.assertFalse(loginKyna.isDisplayed());
+
 	}
 
-	
+	@Test
+	public void TC_03_FixedPopupInDOM_Tiki() {
+		driver.manage().window().maximize();
+
+		driver.get("https://tiki.vn/");
+
+		WebElement loginTiki = driver.findElement(By.cssSelector("div[role='dialog']"));
+		
+		Assert.assertFalse(loginTiki.isDisplayed());
+		
+		driver.findElement(By.cssSelector("span.account-label")).click();
+		sleepInSecond(3);
+		
+		Assert.assertTrue(loginTiki.isDisplayed());
+		
+		driver.findElement(By.cssSelector("input[name='tel']")).sendKeys("11111");
+		
+		driver.findElement(By.xpath("//button[text()='Tiếp Tục']")).click();
+		sleepInSecond(3);
+		
+		Assert.assertEquals(driver.findElement(By.cssSelector("span.error-mess")).getText(), "Số điện thoại không đúng định dạng. ");
+		
+		driver.findElement(By.cssSelector("button.btn-close")).click();
+		sleepInSecond(3);
+
+		Assert.assertFalse(loginTiki.isDisplayed());
+
+	}
 	public void sleepInSecond(long timeInSecond) {
 		try {
 			Thread.sleep(timeInSecond * 1000);
