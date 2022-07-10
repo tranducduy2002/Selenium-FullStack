@@ -1,5 +1,8 @@
 package Popups;
 
+import static org.testng.Assert.assertFalse;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -25,7 +28,7 @@ public class Fixed_Popup {
 		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 		driver = new EdgeDriver();
 		action = new Actions(driver);
-
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 	
@@ -86,32 +89,44 @@ public class Fixed_Popup {
 	}
 
 	@Test
-	public void TC_03_FixedPopupInDOM_Tiki() {
-		driver.manage().window().maximize();
-
+	public void TC_03_FixedPopupNotInDOM_Tiki() {
 		driver.get("https://tiki.vn/");
-
-		WebElement loginTiki = driver.findElement(By.cssSelector("div[role='dialog']"));
 		
-		Assert.assertFalse(loginTiki.isDisplayed());
+		// Khi mới mở thì không có popup trong DOM, nên không findelement được
+		// findElement should not be used to look for non present elements
+		// Show ra lỗi NosuchElementException sau khoảng thời gian là xx giây (implicitWait)
+		// 15s sau sẽ fail
+		// WebElement loginTiki = driver.findElement(By.cssSelector("div[role='dialog']"));
 		
-		driver.findElement(By.cssSelector("span.account-label")).click();
+		
+		// Trong trường hợp popup không có trong DOM thì findElements này sẽ tìm thấy 0 element
+		//  Và cũng chờ hết timeout của implicitWait nhưng không có đánh fail testcase và cũng ko show Exception
+		// Empty list = 0 element
+		List<WebElement> loginTiki = driver.findElements(By.cssSelector("div.ReactModalPortal"));
+		
+		// Undisplayed
+		Assert.assertEquals(loginTiki.size(), 0);
+		
+		// Click vào đăng nhập để show popup lên
+		driver.findElement(By.xpath("//span[text()='Đăng Nhập / Đăng Ký']")).click();
 		sleepInSecond(3);
 		
-		Assert.assertTrue(loginTiki.isDisplayed());
-		
-		driver.findElement(By.cssSelector("input[name='tel']")).sendKeys("11111");
-		
-		driver.findElement(By.xpath("//button[text()='Tiếp Tục']")).click();
+		// Display (Single Element: findElement)
+		Assert.assertTrue(driver.findElement(By.cssSelector("div.ReactModalPortal")).isDisplayed());
 		sleepInSecond(3);
 		
-		Assert.assertEquals(driver.findElement(By.cssSelector("span.error-mess")).getText(), "Số điện thoại không đúng định dạng. ");
+		// Display (Multiple Elements: findElements)
+		loginTiki = driver.findElements(By.cssSelector("div.ReactModalPortal"));
+		Assert.assertEquals(loginTiki.size(), 1);
+		Assert.assertTrue(loginTiki.get(0).isDisplayed());
 		
-		driver.findElement(By.cssSelector("button.btn-close")).click();
+		// CLick để đóng popup
+		driver.findElement(By.cssSelector("img.close-img")).click();
 		sleepInSecond(3);
-
-		Assert.assertFalse(loginTiki.isDisplayed());
-
+		
+		loginTiki = driver.findElements(By.cssSelector("div.ReactModalPortal"));
+		Assert.assertEquals(loginTiki.size(), 0);
+		
 	}
 	public void sleepInSecond(long timeInSecond) {
 		try {
