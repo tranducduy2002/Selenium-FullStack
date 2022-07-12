@@ -63,15 +63,14 @@ public class Random_Popups {
 			driver.findElement(By.id("popup-email")).sendKeys("duy.tran@gmail.com");
 			driver.findElement(By.id("popup-phone")).sendKeys("12345678");
 			sleepInSecond(3);
-
-			
 			driver.findElement(By.cssSelector("button#close-popup")).click();
 			sleepInSecond(3);
 		}
-		
+		sleepInSecond(3);
+
 		driver.findElement(By.xpath("//a[text()='Tất cả khóa học']")).click();
 		sleepInSecond(3);
-		
+
 		Assert.assertEquals(driver.getCurrentUrl(), "https://dehieu.vn/khoa-hoc");
 		
 	}
