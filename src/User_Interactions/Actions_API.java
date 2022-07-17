@@ -65,7 +65,6 @@ public class Actions_API {
 		driver.manage().window().maximize();
 
 		WebElement homeMenu = driver.findElement(By.cssSelector("span.icon_menu"));
-		
 		action.moveToElement(homeMenu).perform();
 		sleepInMiliSecond(3000);
 
