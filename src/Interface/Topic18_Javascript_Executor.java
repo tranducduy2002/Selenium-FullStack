@@ -31,7 +31,7 @@ public class Topic18_Javascript_Executor {
 		jsExecutor = (JavascriptExecutor) driver;
 	}
 	
-	@Test
+//	@Test
 	public void TC_01_LIVEPanda() {
 		navigateToUrlByJS("http://live.techpanda.org");
 		sleepInSecond(5);
@@ -75,6 +75,45 @@ public class Topic18_Javascript_Executor {
 		
 		String demoGuruDomain = (String) executeForBrowser("return document.domain");
 		Assert.assertEquals(demoGuruDomain, "demo.guru99.com");
+	}
+	
+	@Test
+	public void TC_02_LIVEPanda() {
+		navigateToUrlByJS("https://warranty.rode.com");
+		sleepInSecond(3);
+		
+		By registerButton = By.cssSelector("button[type='submit']");
+		driver.findElement(registerButton).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(getElementValidationMessage("//input[@id='firstname']"), "Please fill out this field.");
+		
+		driver.findElement(By.cssSelector("input[id='firstname']")).sendKeys("AAA");
+		driver.findElement(registerButton).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(getElementValidationMessage("//input[@id='surname']"), "Please fill out this field.");
+		
+		driver.findElement(By.cssSelector("input[id='surname']")).sendKeys("AAA");
+		driver.findElement(registerButton).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(getElementValidationMessage("//div[contains(text(),'Register')]/following-sibling::div//input[@id='email']"), "Please fill out this field.");
+		driver.findElement(By.xpath("//div[contains(text(),'Register')]/following-sibling::div//input[@id='email']")).sendKeys("AAA");
+		driver.findElement(registerButton).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(getElementValidationMessage("//div[contains(text(),'Register')]/following-sibling::div//input[@id='email']"), "Please include an '@' in the email address. 'AAA' is missing an '@'.");
+		
+		driver.findElement(By.xpath("//div[contains(text(),'Register')]/following-sibling::div//input[@id='email']")).clear();
+
+		driver.findElement(By.xpath("//div[contains(text(),'Register')]/following-sibling::div//input[@id='email']")).sendKeys("AAA@gmail.com");
+		driver.findElement(registerButton).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(getElementValidationMessage("//div[contains(text(),'Register')]/following-sibling::div//input[@id='password']"), "Please fill out this field.");
+
+		
 	}
 		
 	public Object executeForBrowser(String javaScript) {
