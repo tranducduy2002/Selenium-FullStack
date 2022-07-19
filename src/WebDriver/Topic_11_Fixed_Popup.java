@@ -1,4 +1,4 @@
-package Popups;
+package WebDriver;
 
 import static org.testng.Assert.assertFalse;
 
@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Fixed_Popup {
+public class Topic_11_Fixed_Popup {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	Actions action;

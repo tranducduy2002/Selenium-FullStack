@@ -1,4 +1,4 @@
-package Interface;
+package WebDriver;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

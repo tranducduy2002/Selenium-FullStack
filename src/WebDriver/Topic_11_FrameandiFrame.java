@@ -1,4 +1,4 @@
-package Frame_iFrame;
+package WebDriver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class FrameandiFrame {
+public class Topic_11_FrameandiFrame {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");

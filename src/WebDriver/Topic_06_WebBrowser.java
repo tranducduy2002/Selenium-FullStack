@@ -1,4 +1,4 @@
-package ExerciseWebElements;
+package WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class WebBrowser {
+public class Topic_06_WebBrowser {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 

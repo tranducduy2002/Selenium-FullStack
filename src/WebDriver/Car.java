@@ -1,4 +1,4 @@
-package Interface;
+package WebDriver;
 
 public class Car {
 	private String carName;

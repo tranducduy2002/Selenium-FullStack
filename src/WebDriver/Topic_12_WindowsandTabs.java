@@ -1,4 +1,4 @@
-package Windows_Tabs;
+package WebDriver;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class WindowsandTabs {
+public class Topic_12_WindowsandTabs {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");

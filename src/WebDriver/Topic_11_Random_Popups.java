@@ -1,4 +1,4 @@
-package Popups;
+package WebDriver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Random_Popups {
+public class Topic_11_Random_Popups {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	JavascriptExecutor jsExecutor;
