@@ -37,15 +37,50 @@ public class Topic_20_Wait_FindElement {
 		// - Có duy nhất 1 element
 		// Nếu như element xuất hiện ngay -> thì trả về element đó không cần chờ hết timeout
 		// Nếu như element chưa xuất hiện -> thì sau 0.5s sẽ tìm lại cho đến khi hết time thì thôi
-		System.out.println("Start time =" + getCurrentTime());
-		driver.findElement(By.xpath("//input[@id='email']")); // Trả về duy nhất 1 element
-		System.out.println("End time =" + getCurrentTime());
+		/*
+		 * System.out.println("Start time =" + getCurrentTime());
+		 * driver.findElement(By.xpath("//input[@id='email']")); // Trả về duy nhất 1
+		 * element System.out.println("End time =" + getCurrentTime());
+		 */
 		
 		// - Không có element nào hết
-		
+			// Nó sẽ tìm đi tìm lại cho đến khi hết timeout
+			// Sau khi hết timeout thì đánh fail cả testcase này
+			// Ko chạy các step còn lại
+			// Throw/ Log ra  exception (ngoại lệ): NoSuchElement - ko tìm thấy Element
+		/*
+		 * System.out.println("Start time =" + getCurrentTime());
+		 * driver.findElement(By.xpath("//input[@name='automation']"));
+		 * System.out.println("End time =" + getCurrentTime());
+		 */
 		// - Có nhiều hơn 1 element
+		//driver.findElement(By.xpath("//div[@id='pageFooterChildren']//a[text()]")).click();
+		
 	}
-	
+		
+	@Test
+	public void TC_02_Find_Elements () {
+		int elementNumber = 0;
+		// - Có nhiều hơn 1 element
+		// Nếu như element xuất hiện ngay -> thì trả về element đó không cần chờ hết timeout
+		// Nếu như element chưa xuất hiện -> thì sau 0.5s sẽ tìm lại cho đến khi hết time thì thôi
+		elementNumber = driver.findElements(By.xpath("//input[@id='email']")).size();
+		System.out.println("1 element =" + elementNumber);
+		
+		elementNumber = driver.findElements(By.xpath("//div[@id='pageFooterChildren']//a[text()]")).size();
+		System.out.println("n element =" + elementNumber);
+		
+		// - Không có element nào hết
+		// Nó sẽ tìm đi tìm lại cho đến khi hết timeout
+		// Không đánh fail test case này
+		// Vẫn chạy tiếp các step tiếp theo
+		System.out.println("Start time =" + getCurrentTime());
+		elementNumber = driver.findElements(By.xpath("//input[@name='automation']")).size();
+		System.out.println("End time =" + getCurrentTime());
+		System.out.println("0 element =" + elementNumber);
+
+		
+	}
 	
 	
 	public void sleepInSecond(long timeInSecond) {
