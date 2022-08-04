@@ -29,7 +29,7 @@ public class Topic_20_Explicit_Wait {
 	By helloText = By.cssSelector("div#finish h4");
 	String uploadFileFolderPath = projectPath + File.separator + "uploadFiles" + File.separator;
 
-	String uploadFile1 = "10MB.jpg";
+	String uploadFile1 = "vietnam.jpg";
 	String uploadFile2 = "abcd1234.jpg";
 	String uploadFile3 = "bridge.jpg";
 	
@@ -117,6 +117,7 @@ public class Topic_20_Explicit_Wait {
 		
 	}
 	
+	@Test
 	public void TC_05_Upload_GoFile() {
 		explicitWait = new WebDriverWait(driver, 90);
 		driver.get("https://gofile.io/uploadFiles");
@@ -133,21 +134,51 @@ public class Topic_20_Explicit_Wait {
 		
 		driver.findElement(By.cssSelector("a#rowUploadSuccess-downloadPage")).click();
 		
-		switchToWindowByTitle("");
+		String parentID = driver.getWindowHandle();
 		
+		switchToWindowByID(parentID);
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile1 +"']/parent::a/parent::div/following-sibling::div//button[@id='contentId-download']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile1 +"']/parent::a/parent::div/following-sibling::div/button[contains(@class,'contentPlay')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile2 +"']/parent::a/parent::div/following-sibling::div//button[@id='contentId-download']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile2 +"']/parent::a/parent::div/following-sibling::div/button[contains(@class,'contentPlay')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile3 +"']/parent::a/parent::div/following-sibling::div//button[@id='contentId-download']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='" + uploadFile3 +"']/parent::a/parent::div/following-sibling::div/button[contains(@class,'contentPlay')]")).isDisplayed());
+	
+		closeAllWindowWithoutParent(parentID);
+		Assert.assertTrue(uploadedText.isDisplayed());
 	}
 	
-	public void switchToWindowByTitle(String expectedPageTitle) {
+	public void switchToWindowByID(String parentID) {
 		Set<String> allwindowIDs = driver.getWindowHandles();
 		for (String id : allwindowIDs) {
-			driver.switchTo().window(id);
-			
-			String currentPageTitle = driver.getTitle();
-			if (currentPageTitle.equals(expectedPageTitle)) {
-				break;
+			if(!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				sleepInSecond(2);
 			}
+			
 		}
+	}	
+	
+	public void closeAllWindowWithoutParent(String parentID) {
+		Set<String> allwindowIDs = driver.getWindowHandles();
+		for (String id : allwindowIDs) {
+			if(!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				driver.close();
+			}
+			driver.switchTo().window(parentID);
+		}
+
 	}
+	
+	public void sleepInSecond(long timeInSecond) {
+		try {
+			Thread.sleep(timeInSecond * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		}
 	
 	public int generateRandomNumber () {
 		Random rand = new Random();
