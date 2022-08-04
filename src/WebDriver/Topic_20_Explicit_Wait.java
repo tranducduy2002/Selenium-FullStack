@@ -155,8 +155,7 @@ public class Topic_20_Explicit_Wait {
 			if(!id.equals(parentID)) {
 				driver.switchTo().window(id);
 				sleepInSecond(2);
-			}
-			
+			}			
 		}
 	}	
 	
@@ -169,7 +168,6 @@ public class Topic_20_Explicit_Wait {
 			}
 			driver.switchTo().window(parentID);
 		}
-
 	}
 	
 	public void sleepInSecond(long timeInSecond) {
@@ -178,7 +176,7 @@ public class Topic_20_Explicit_Wait {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		}
+	}
 	
 	public int generateRandomNumber () {
 		Random rand = new Random();
