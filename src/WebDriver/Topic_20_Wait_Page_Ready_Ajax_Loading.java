@@ -30,17 +30,17 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 		driver = new EdgeDriver();
 	}
 	
-	@Test
+	//@Test
 	public void TC_01_Orange_HRM_Implicit () {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
 		driver.get("https://api.orangehrm.com/#api-_");
-		
-		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.spinner")));
-		
+
+
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#project h1")).getText(), "OrangeHRM REST API Documentation");
 	}
 	
-	@Test
+	//@Test
 	public void TC_02_Orange_HRM_Explicit () {		
 		driver.get("https://api.orangehrm.com/#api-_");
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -53,11 +53,16 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 	
 	@Test
 	public void TC_03_Orange_HRM_Page_Ready () {
-		driver.get("https://api.orangehrm.com/#api-_");
+		driver.get("https://opensource-demo.orangehrmlive.com");
 		
-		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.spinner")));
+		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+		driver.findElement(By.id("btnLogin")).click();
 		
-		Assert.assertEquals(driver.findElement(By.cssSelector("div#project h1")).getText(), "OrangeHRM REST API Documentation");
+			
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		Assert.assertTrue(isPageLoadedSuccess());
+		Assert.assertTrue(driver.findElement(By.cssSelector("div#div_graph_display_emp_distribution")).isDisplayed());
 	}
 	
 	public boolean isPageLoadedSuccess() {
