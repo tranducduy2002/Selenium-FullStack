@@ -23,7 +23,8 @@ public class Topic_06_Condition_Statement_IfElse {
 		
 		
 		// Nếu driver là IE thì dùng hàm click của JSExecutor
-		System.setProperty("webdriver.ie.driver", projectPath + "\\browerDrivers\\IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", projectPath + "\\browserDrivers\\IEDriverServer.exe");
+
 		driver = new InternetExplorerDriver();
 		
 		/*
