@@ -1,4 +1,4 @@
-package User_Interactions;
+package WebDriver;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class DragandDrop {
+public class Topic_10_DragandDrop {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	Actions action;

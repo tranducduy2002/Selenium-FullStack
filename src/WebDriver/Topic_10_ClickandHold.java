@@ -1,4 +1,4 @@
-package User_Interactions;
+package WebDriver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ClickandHold {
+public class Topic_10_ClickandHold {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	Actions action;

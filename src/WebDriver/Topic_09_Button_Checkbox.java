@@ -1,4 +1,4 @@
-package Button_Alert;
+package WebDriver;
 
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Button_Checkbox {
+public class Topic_09_Button_Checkbox {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 

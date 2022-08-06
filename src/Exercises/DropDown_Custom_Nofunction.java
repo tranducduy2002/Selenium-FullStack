@@ -1,4 +1,4 @@
-package ExerciseDropDown;
+package Exercises;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

@@ -1,4 +1,4 @@
-package Button_Alert;
+package WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Custom_Radio_Checkbox {
+public class Topic_09_Custom_Radio_Checkbox {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");

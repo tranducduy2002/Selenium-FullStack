@@ -1,4 +1,4 @@
-package ExerciseDropDown;
+package Exercises;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Exercise_DropDown_React {
+public class Exercise_DropDown_JQuery2 {
 
 	WebDriver driver;
 	WebDriverWait explicitWait;
@@ -35,17 +35,23 @@ public class Exercise_DropDown_React {
 
 	@Test
 	public void TC_01_Jquery2() {
-		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
+		driver.get("https://www.honda.com.vn/o-to/du-toan-chi-phi");
+				
+		selectCustomDropdown("selectize-input", "div.dropdown-menu>a", "HR-V RS (Đỏ cá tính/ trắng ngọc quý phái/ trắng bạc thời trang)");
+		Assert.assertEquals(driver.findElement(By.id("selectize-input")), "\"HR-V RS (Đỏ cá tính/ trắng ngọc quý phái/ trắng bạc thời trang)\"");
+		sleepInSecond(1);
+
+		selectCustomDropdown("province", "select#province>option", "Đà Nẵng");
 		
-		selectCustomDropdown("i.dropdown", "div.item>span", "Christian");
-		Assert.assertEquals(driver.findElement(By.cssSelector("div.divider")).getText(), "Christian");
-	
-		selectCustomDropdown("i.dropdown", "div.item>span", "Justen Kitsune");
-		Assert.assertEquals(driver.findElement(By.cssSelector("div.divider")).getText(), "Justen Kitsune");
+		sleepInSecond(1);
+
+		selectCustomDropdown("registration_fee", "select#registration_fee>option", "Khu vực III");
+		sleepInSecond(1);
+
 	}
 	
 	public void selectCustomDropdown(String firstMenu, String secondMenu, String option) {
-		driver.findElement(By.cssSelector(firstMenu)).click();
+		driver.findElement(By.id(firstMenu)).click();
 		
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(secondMenu)));
 		

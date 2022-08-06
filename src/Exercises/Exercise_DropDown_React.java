@@ -1,4 +1,4 @@
-package ExerciseDropDown;
+package Exercises;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Exercise_DropDown_VueJS {
+public class Exercise_DropDown_React {
 
 	WebDriver driver;
 	WebDriverWait explicitWait;
@@ -32,51 +32,35 @@ public class Exercise_DropDown_VueJS {
 		driver.manage().window().maximize();
 		
 	}
-      
 
 	@Test
-	public void TC_03_Vuejs() {
-		driver.get("https://mikerodham.github.io/vue-dropdowns/");
+	public void TC_01_Jquery2() {
+		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
 		
-		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "First Option");
-		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "First Option");
+		selectCustomDropdown("i.dropdown", "div.item>span", "Christian");
+		Assert.assertEquals(driver.findElement(By.cssSelector("div.divider")).getText(), "Christian");
 	
-		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "Second Option");
-		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Second Option");
-		
-		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "Third Option");
-		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Third Option");
-	}
-	
-
-	@Test
-	public void TC_04_DefaultDropdown_Nopcommerce() {
-		driver.get("https://demo.nopcommerce.com/register");
-		
-		selectCustomDropdown("select[name='DateOfBirthDay']", "select[name='DateOfBirthDay']>option", "10");
-		Assert.assertTrue(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']/option[text()='10']")).isSelected());
-	
+		selectCustomDropdown("i.dropdown", "div.item>span", "Justen Kitsune");
+		Assert.assertEquals(driver.findElement(By.cssSelector("div.divider")).getText(), "Justen Kitsune");
 	}
 	
 	public void selectCustomDropdown(String firstMenu, String secondMenu, String option) {
 		driver.findElement(By.cssSelector(firstMenu)).click();
-		sleepInSecond(1);
+		
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(secondMenu)));
 		
 		List<WebElement> dropdownMenu = driver.findElements(By.cssSelector(secondMenu));
 		
 		for (WebElement item : dropdownMenu) {
 			String itemName = item.getText();
-			System.out.println("Item Name:" + itemName);
 			if (itemName.equals(option)) {
 				item.click();
+				sleepInSecond(1);
 				break;
 				}
 		}
 				
 	}
-    
-    
 	
 	public void sleepInSecond(long timeInSecond) {
 		try {

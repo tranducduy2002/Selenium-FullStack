@@ -1,4 +1,4 @@
-package ExerciseTextBox;
+package Exercises;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

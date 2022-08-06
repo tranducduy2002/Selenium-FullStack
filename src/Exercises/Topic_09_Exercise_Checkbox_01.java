@@ -1,4 +1,4 @@
-package Button_Alert;
+package Exercises;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Exercise_Checkbox_01 {
+public class Topic_09_Exercise_Checkbox_01 {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");

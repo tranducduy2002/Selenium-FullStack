@@ -1,4 +1,4 @@
-package ExerciseDropDown;
+package Exercises;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Exercise_DropDown_JQuery2 {
+public class Exercise_DropDown_VueJS {
 
 	WebDriver driver;
 	WebDriverWait explicitWait;
@@ -32,41 +32,51 @@ public class Exercise_DropDown_JQuery2 {
 		driver.manage().window().maximize();
 		
 	}
+      
 
 	@Test
-	public void TC_01_Jquery2() {
-		driver.get("https://www.honda.com.vn/o-to/du-toan-chi-phi");
-				
-		selectCustomDropdown("selectize-input", "div.dropdown-menu>a", "HR-V RS (Đỏ cá tính/ trắng ngọc quý phái/ trắng bạc thời trang)");
-		Assert.assertEquals(driver.findElement(By.id("selectize-input")), "\"HR-V RS (Đỏ cá tính/ trắng ngọc quý phái/ trắng bạc thời trang)\"");
-		sleepInSecond(1);
-
-		selectCustomDropdown("province", "select#province>option", "Đà Nẵng");
+	public void TC_03_Vuejs() {
+		driver.get("https://mikerodham.github.io/vue-dropdowns/");
 		
-		sleepInSecond(1);
+		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "First Option");
+		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "First Option");
+	
+		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "Second Option");
+		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Second Option");
+		
+		selectCustomDropdown("li.dropdown-toggle", "ul.dropdown-menu>li>a", "Third Option");
+		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Third Option");
+	}
+	
 
-		selectCustomDropdown("registration_fee", "select#registration_fee>option", "Khu vực III");
-		sleepInSecond(1);
-
+	@Test
+	public void TC_04_DefaultDropdown_Nopcommerce() {
+		driver.get("https://demo.nopcommerce.com/register");
+		
+		selectCustomDropdown("select[name='DateOfBirthDay']", "select[name='DateOfBirthDay']>option", "10");
+		Assert.assertTrue(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']/option[text()='10']")).isSelected());
+	
 	}
 	
 	public void selectCustomDropdown(String firstMenu, String secondMenu, String option) {
-		driver.findElement(By.id(firstMenu)).click();
-		
+		driver.findElement(By.cssSelector(firstMenu)).click();
+		sleepInSecond(1);
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(secondMenu)));
 		
 		List<WebElement> dropdownMenu = driver.findElements(By.cssSelector(secondMenu));
 		
 		for (WebElement item : dropdownMenu) {
 			String itemName = item.getText();
+			System.out.println("Item Name:" + itemName);
 			if (itemName.equals(option)) {
 				item.click();
-				sleepInSecond(1);
 				break;
 				}
 		}
 				
 	}
+    
+    
 	
 	public void sleepInSecond(long timeInSecond) {
 		try {

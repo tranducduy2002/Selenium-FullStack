@@ -1,4 +1,4 @@
-package Button_Alert;
+package Exercises;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Alert_Exercise {
+public class Topic_09_Alert_Exercise {
 
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");

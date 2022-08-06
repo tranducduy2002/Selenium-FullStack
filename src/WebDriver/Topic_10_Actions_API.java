@@ -1,4 +1,4 @@
-package User_Interactions;
+package WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Actions_API {
+public class Topic_10_Actions_API {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	Actions action;
