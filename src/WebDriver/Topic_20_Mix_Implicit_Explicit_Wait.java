@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,7 +29,7 @@ public class Topic_20_Mix_Implicit_Explicit_Wait {
 	
 	}
 	
-	@Test
+	//@Test
 	public void TC_01_Element_Found () {
 		driver.get("https://facebook.com");
 		By emailIDBy = By.id("email");
@@ -45,7 +46,7 @@ public class Topic_20_Mix_Implicit_Explicit_Wait {
 
 	}
 	
-	@Test
+	//@Test
 	public void TC_02_Element_NotFound_Only_Implicit () {
 		driver.get("https://facebook.com");
 		By emailIDBy = By.id("vietnam");
@@ -61,7 +62,7 @@ public class Topic_20_Mix_Implicit_Explicit_Wait {
 		
 	}
 	
-	@Test
+	//@Test
 	public void TC_03_Element_NotFound_Only_Explicit() {
 		driver.get("https://facebook.com");
 		By emailIDBy = By.id("vietnam");
@@ -75,7 +76,7 @@ public class Topic_20_Mix_Implicit_Explicit_Wait {
 		}
 		System.out.println("End explicit:" + getCurrentTime());
 	}
-	@Test
+	//@Test
 	public void TC_04_Element_NotFound_Implicit_Explicit() {
 		driver.get("https://facebook.com");
 		By emailIDBy = By.id("vietnam");
@@ -95,8 +96,21 @@ public class Topic_20_Mix_Implicit_Explicit_Wait {
 	}
 	
 	@Test
-	public void TC_05_Element_NotFound_Implicit_Explicit() {
+	public void TC_05_Element_NotFound_Explicit_WebElement() {
+		driver.get("https://facebook.com");
+		//WebElement emailIDTextBox = driver.findElement(By.id("vietnam"));
 		
+		explicitWait = new WebDriverWait(driver, 15);
+		System.out.println("Start implicit:" + getCurrentTime());
+		
+		try {
+			// findElement là 1 tham số riêng: nó sẽ chạy riêng độc lập trước
+			// Pass thì mới vào hàm: visibilityOf để chạy tiếp
+			// Fail thì không vào
+			explicitWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("vietnam"))));		
+			} catch (Exception e) {
+			}
+		System.out.println("End implicit:" + getCurrentTime());
 		
 	}
 	
