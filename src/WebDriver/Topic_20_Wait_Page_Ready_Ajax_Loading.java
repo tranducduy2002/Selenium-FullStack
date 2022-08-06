@@ -1,11 +1,15 @@
 package WebDriver;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +24,7 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 	String osName = System.getProperty("os.name");
 	WebDriverWait explicitWait;
 	JavascriptExecutor jsExecutor;
+	Actions action;
 	@BeforeClass
 	public void beforeClass () {
 		if (osName.contains("Mac OS")) {
@@ -28,6 +33,7 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 		System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 		}
 		driver = new EdgeDriver();
+		action = new Actions(driver);
 	}
 	
 	//@Test
@@ -51,7 +57,7 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#project h1")).getText(), "OrangeHRM REST API Documentation");
 	}
 	
-	@Test
+	//@Test
 	public void TC_03_Orange_HRM_Page_Ready () {
 		driver.get("https://opensource-demo.orangehrmlive.com");
 		
@@ -64,7 +70,29 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 		Assert.assertTrue(isPageLoadedSuccess());
 		Assert.assertTrue(driver.findElement(By.cssSelector("div#div_graph_display_emp_distribution")).isDisplayed());
 	}
+	@Test
+	public void TC_04_Test_Project_Page_Ready () {
+		driver.get("https://blog.testproject.io/");
+
+		// Handle popup
+		if (driver.findElement(By.cssSelector("div#mailch-bg")).isDisplayed()) {
+			driver.findElement(By.cssSelector("div#close-mailch")).click();
+		}
+		// Hove mouse to Search text box
+		action.moveToElement(driver.findElement(By.cssSelector("section#search-2 input.search-field"))).perform();
+		
+		Assert.assertTrue(isPageLoadedSuccess());
+		driver.findElement(By.cssSelector("section#search-2 input.search-field")).sendKeys("Selenium");
+		driver.findElement(By.cssSelector("section#search-2 span.glass")).click();
+		
+		Assert.assertTrue(isPageLoadedSuccess());
+		List<WebElement> firstAllPostTitle = driver.findElements(By.cssSelector("div#post-content a"));
+		for (WebElement postTitle : firstAllPostTitle) {
+			Assert.assertTrue(postTitle.getText().contains("Selenium"));
+			
+		}
 	
+	}
 	public boolean isPageLoadedSuccess() {
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
@@ -86,7 +114,7 @@ public class Topic_20_Wait_Page_Ready_Ajax_Loading {
 	
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+	//	driver.quit();
 	}
 	
 	
