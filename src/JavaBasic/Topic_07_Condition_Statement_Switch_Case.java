@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Topic_07_Condition_Statement_Switch_Case {
@@ -46,8 +45,8 @@ public class Topic_07_Condition_Statement_Switch_Case {
 		System.out.println(driver.toString());
 	}
 	
-	@Test
-	public void TC_0_Get_Month() {
+	//@Test
+	public void TC_03_Get_Month() {
 		 int month = scanner.nextInt();
 		 switch (month) {
 		 case 1:
@@ -72,6 +71,71 @@ public class Topic_07_Condition_Statement_Switch_Case {
 		 }
 		
 	}
+	
+	//@Test
+	public void TC_04_Exercise_One_To_Ten() {
+		 int countNumber = scanner.nextInt();
+		 switch (countNumber) {
+		 case 1:
+			 System.out.println("One");
+		 	 break;	 
+		 case 2:
+			 System.out.println("Two");
+		 	 break;	 
+		 case 3:
+			 System.out.println("Three");
+		 	 break;	 
+		 case 4:
+			 System.out.println("Four");
+		 	 break;	 
+		 case 5:
+			 System.out.println("Five");
+		 	 break;	 
+		 case 6:
+			 System.out.println("Six");
+		 	 break;	 
+		 case 7:
+			 System.out.println("Seven");
+		 	 break;	 
+		 case 8:
+			 System.out.println("Eight");
+		 	 break;	 
+		 case 9:
+			 System.out.println("Nine");
+		 	 break;	 
+		 case 10:
+			 System.out.println("Ten");
+		 	 break;	 
+		 }
+	}
+	
+	@Test
+	public void TC_05_Exercise_Calculator() {
+
+		int numberA = scanner.nextInt();
+		int numberB = scanner.nextInt();
+		String operator = scanner.next();
+
+		 switch (operator) {
+		 case "+":
+			 System.out.println("Sum : " + (numberA + numberB));
+		 	 break;	 
+		 case "-":
+			 System.out.println("Divide :" + (numberA - numberB));
+		 	 break;	 
+		 case "x":
+			 System.out.println(numberA * numberB);
+		 	 break;	 
+		 case "/":
+			 System.out.println(numberA / numberB);
+		 	 break;	 
+		 case "%":
+			 System.out.println(numberA % numberB);
+		 	 break;	
+		 }
+		
+	}
+	
 	public WebDriver getBrowserDriver(String browserName) {
 		switch(browserName) {
 		case "chrome":
