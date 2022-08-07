@@ -72,11 +72,11 @@ public class Topic_06_Condition_Statement_IfElse {
 		// Dynamic Page
 		String pageName = "Login";
 		
-		if (pageName.equals("Login"){
+		if (pageName.equals("Login")) {
 			// LoginPage loginPAge = new LoginPage();
 			// return loginPage;
-		} else if (pageName.equals("Register"){
-			// Register pae registerPage = new RegisterPage();
+		} else if (pageName.equals("Register")){
+			// Register page registerPage = new RegisterPage();
 			// return registerPage;
 		} else if (pageName.equals("New Customer")) {
 			// CustomerPage customerPage = new CustomerPage();
