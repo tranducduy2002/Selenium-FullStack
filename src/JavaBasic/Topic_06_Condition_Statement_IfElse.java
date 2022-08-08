@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -146,7 +147,7 @@ public class Topic_06_Condition_Statement_IfElse {
 			languaguesCheckbox.clear();
 		}
 		
-		
+		Assert.assertTrue(status);
 		
 	}
 }
