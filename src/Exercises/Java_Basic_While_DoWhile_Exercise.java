@@ -59,5 +59,9 @@ public class Java_Basic_While_DoWhile_Exercise {
 
 
     }
+
+    public static void main(String[] args) {
+    
+    }
 }
 
