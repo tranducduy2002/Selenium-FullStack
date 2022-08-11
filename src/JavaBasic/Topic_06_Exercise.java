@@ -2,12 +2,10 @@ package JavaBasic;
 
 import java.util.Scanner;
 
-import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 public class Topic_06_Exercise {
-	WebDriver driver;
 	Scanner scanner = new Scanner(System.in);
 	
 	//@Test
