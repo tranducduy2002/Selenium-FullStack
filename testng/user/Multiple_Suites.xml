@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Run all suites">
+  <suite-files>
+      <suite-file path="parallel.xml"/>
+      <suite-file path="testing.xml"/>
+
+  </suite-files>
+</suite>

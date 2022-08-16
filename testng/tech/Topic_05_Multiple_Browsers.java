@@ -39,7 +39,7 @@ public class Topic_05_Multiple_Browsers {
 
     @Test(dataProvider = "user_pass")
     public void TC_01_LoginToSystem(String username, String password) throws InterruptedException{
-        driver.get("http://live.index.php/customer/account/login");
+        driver.get("http://live.techpanda.org/index.php/customer/account/login/");
         driver.findElement(emailTextbox).sendKeys(username);
         driver.findElement(passwordTextbox).sendKeys(password);
         driver.findElement(loginButton).click();
