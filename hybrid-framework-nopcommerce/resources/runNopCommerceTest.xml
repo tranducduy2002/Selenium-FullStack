@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNG Suite" verbose="1">
+
+
+    <test name="testcases">
+        <classes>
+            <class name="testcases.com.nopcommerce.user.User_01_Register_Login"/>
+        </classes>
+
+    </test>
+</suite>
